@@ -1,4 +1,9 @@
+require_relative 'bike_container'
+
+
 class Bike
+
+  include BikeContainer
 
   def initialize
     fix!

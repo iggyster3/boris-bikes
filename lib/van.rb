@@ -1,27 +1,19 @@
+require_relative 'bike_container'
+
 class Van
 
-  DEFAULT_CAPACITY = 5
+  include BikeContainer
 
   def initialize(options = {})
-    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
-    @bikes = []
+    self.capacity = options.fetch(:capacity, capacity)
   end
 
-  # def bike_count
-  # 	@bike_count
-  # end
+  alias_method :spot, :dock
 
-  def spot(bike)
-    raise "Van is full" if full?
-    @bikes << bike
-  end
-
-  def full?
-    @bikes.count == @capacity
-  end
-
-  def release(bike)
-    @bikes.delete(bike)
+  def take_available_bikes(garage)
+    garage.available_bikes.each do |bike|
+    bikes << garage.release(bike)
+    end
   end
 
 end
